@@ -8,16 +8,11 @@
  * Factory in the proagrocorpAdminFrontendApp.
  */
 angular.module('proagrocorpAdminFrontendApp')
-  .factory('oAuthHttpInterceptor', function () {
-    // Service logic
-    // ...
-
-    var meaningOfLife = 42;
-
-    // Public API here
+.factory('oAuthHttpInterceptor', function ($cookies) {
     return {
-      someMethod: function () {
-        return meaningOfLife;
-      }
+        request: function (config) {
+            config.headers.Authorization = 'Bearer ' + $cookies.get('globalagro-token');
+            return config;
+        }
     };
-  });
+});

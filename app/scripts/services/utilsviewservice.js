@@ -8,16 +8,15 @@
  * Factory in the proagrocorpAdminFrontendApp.
  */
 angular.module('proagrocorpAdminFrontendApp')
-  .factory('utilsViewService', function () {
-    // Service logic
-    // ...
-
-    var meaningOfLife = 42;
-
-    // Public API here
+.factory('$utilsViewService', function () {
     return {
-      someMethod: function () {
-        return meaningOfLife;
-      }
+        enable: function(id) {
+            $(id).removeClass('disabled');
+            $(id).prop('disabled', false);
+        },
+        disable: function(id) {
+            $(id).addClass('disabled');
+            $(id).prop('disabled', true);
+        }
     };
-  });
+});

@@ -26,7 +26,7 @@ angular
     'angular-toArrayFilter'
 ])
 .config(function($stateProvider, $urlRouterProvider, $httpProvider) {
-    $httpProvider.interceptors.push('oauthHttpInterceptor');
+    $httpProvider.interceptors.push('oAuthHttpInterceptor');
     var mainState = {
         name: 'main',
         url: '/',
@@ -45,13 +45,23 @@ angular
         title: 'Información General'
     };
     
+    var usersLoginState = {
+        name: 'users-login',
+        url: '/users-login',
+        templateUrl: 'views/users-login.html',
+        controller: 'UsersLoginCtrl',
+        controllerAs: 'users-login',
+        title: 'Login'
+    };
+    
     $stateProvider.state(mainState);
     $stateProvider.state(infosState);
+    $stateProvider.state(usersLoginState);
     $urlRouterProvider.when('', '/');
 })
-.run(function($rootScope, $state, $cookies, $location, $window, envservice) {
-    angular.module('proagrocorpAdminFrontendApp').path_location = envservice.getHost();
-    $rootScope.path_location = envservice.getHost();
+.run(function($rootScope, $state, $cookies, $location, $window, envService) {
+    angular.module('proagrocorpAdminFrontendApp').pathLocation = envService.getHost();
+    $rootScope.pathLocation = envService.getHost();
     
     $('#dvMessageRoot').removeClass('dvHidden');
     $rootScope.tinymceOptions = {
@@ -66,9 +76,9 @@ angular
     
     $rootScope.$state = $state;
     
-    if ($cookies.get('transnv-token')) {
+    if ($cookies.get('globalagro-token')) {
         $rootScope.logged = true;
-        $rootScope.user = $cookies.getObject('transnv-user');
+        $rootScope.user = $cookies.getObject('globalagro-user');
     } else {
         $rootScope.logged = false;
     }
@@ -127,8 +137,8 @@ angular
 
     $rootScope.logout = function() {
         if (confirm('¿Está seguro de cerrar sesión?')) {
-            $cookies.remove('transnv-user');
-            $cookies.remove('transnv-token');
+            $cookies.remove('globalagro-user');
+            $cookies.remove('globalagro-token');
             $rootScope.user = undefined;
             $('#topbar-wrapper').addClass('ng-hide');
             $('#wrapper').addClass('inLogin');

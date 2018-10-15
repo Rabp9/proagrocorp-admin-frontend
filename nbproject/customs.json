@@ -1,0 +1,14 @@
+{
+    "elements": {},
+    "attributes": {
+        "angular-validator": {
+            "context": "form"
+        },
+        "ui-sref-active": {
+            "context": "a"
+        },
+        "ui-sref": {
+            "context": "a"
+        }
+    }
+}

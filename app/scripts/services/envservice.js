@@ -8,16 +8,13 @@
  * Factory in the proagrocorpAdminFrontendApp.
  */
 angular.module('proagrocorpAdminFrontendApp')
-  .factory('envService', function () {
-    // Service logic
-    // ...
-
-    var meaningOfLife = 42;
-
-    // Public API here
+.factory('envService', function () {
     return {
-      someMethod: function () {
-        return meaningOfLife;
-      }
+        getHost: function() {
+            switch (window.location.hostname) {
+                case 'localhost':
+                    return 'http://localhost:8000/proagrocorp-backend/';
+            }
+        }
     };
-  });
+});
