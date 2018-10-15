@@ -45,6 +45,15 @@ angular
         title: 'Información General'
     };
     
+    var slidesState = {
+        name: 'slides',
+        url: '/slides',
+        templateUrl: 'views/slides.html',
+        controller: 'SlidesCtrl',
+        controllerAs: 'slides',
+        title: 'Slides'
+    };
+    
     var usersLoginState = {
         name: 'users-login',
         url: '/users-login',
@@ -56,6 +65,7 @@ angular
     
     $stateProvider.state(mainState);
     $stateProvider.state(infosState);
+    $stateProvider.state(slidesState);
     $stateProvider.state(usersLoginState);
     $urlRouterProvider.when('', '/');
 })
