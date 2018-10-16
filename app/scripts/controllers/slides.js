@@ -9,7 +9,6 @@
  */
 angular.module('proagrocorpAdminFrontendApp')
 .controller('SlidesCtrl', function ($scope, slidesService, $uibModal, $utilsViewService) {
-    
     $scope.getSlides = function() {
         $scope.loading = true;
         slidesService.getAdmin(function(data) {

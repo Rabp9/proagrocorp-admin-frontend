@@ -12,7 +12,7 @@ angular.module('proagrocorpAdminFrontendApp')
     $rootScope, $utilsViewService) {
     
     $scope.slide = {};
-    $scope.tmpPath = $rootScope.path_location + 'tmp'; 
+    $scope.tmpPath = $rootScope.pathLocation + 'tmp'; 
     $scope.loading = false;
     
     $scope.cancel = function() {
@@ -36,7 +36,7 @@ angular.module('proagrocorpAdminFrontendApp')
         });
     };
     
-    $scope.preview_imagen = function(imagen, errFiles) {
+    $scope.previewImagen = function(imagen, errFiles) {
         $scope.loading = true;
         var fd = new FormData();
         fd.append('file', imagen);
