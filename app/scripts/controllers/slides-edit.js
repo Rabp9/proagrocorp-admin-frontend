@@ -30,7 +30,7 @@ angular.module('proagrocorpAdminFrontendApp')
         $uibModalInstance.dismiss('cancel');
     };
 
-    $scope.saveSlide = function(slide, boton, imagen_preview) {
+    $scope.saveSlide = function(slide, boton, imagenPreview) {
         $('#' + boton).text('Guardando...');
         $utilsViewService.disable('#' + boton);
         

@@ -1,0 +1,24 @@
+<form novalidate angular-validator angular-validator-submit="saveInfo(info, 'btnSaveInfo')" name="infoEdit" angular-validator-quiet>
+    <div class="modal-header">
+        <button type="button" class="close" ng-click="cancel()" data-dismiss="modal" aria-hidden="true"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Modificar Información</h4>
+    </div>
+    <div class="modal-body">
+        <div class="form-group">
+            <label for="txtDescripcion">Descripción</label>
+            <input id="txtDescripcion" class="form-control" type="text" ng-model="info.descripcion" name="infoDescripcion" readonly />
+        </div>
+        <div class="form-group">
+            <label for="txtaValor">Valor</label>
+            <textarea ng-if="info.tipo === 'textarea'" id="txtaValor" class="form-control" ng-model="info.valor" ui-tinymce="tinymcePagesOptions"
+                style="height: 250px;" name="infoValor"></textarea>
+            <textarea ng-if="info.tipo === 'text'" id="txtaValor" class="form-control" ng-model="info.valor" style="height: 250px;" name="infoValor"></textarea>
+            <input ng-if="info.tipo === 'image'"  id="flImagen" type="file" class="form-control" ngf-select="upload($file, $invalidFiles)" 
+                accept="image/*" ngf-max-height="5000" ngf-max-size="10MB" name="imagen"/>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" ng-click="cancel()">Cerrar</button>
+        <button id="btnSaveInfo" class="btn btn-success" type="submit">Guardar Información</button>
+    </div>
+</form>

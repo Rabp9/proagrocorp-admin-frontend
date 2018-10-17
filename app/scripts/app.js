@@ -63,6 +63,15 @@ angular
         title: 'Login'
     };
     
+    var infosState = {
+        name: 'infos',
+        url: '/infos',
+        templateUrl: 'views/infos.html',
+        controller: 'InfosCtrl',
+        controllerAs: 'infos',
+        title: 'Información General'
+    };
+    
     $stateProvider.state(mainState);
     $stateProvider.state(infosState);
     $stateProvider.state(slidesState);
