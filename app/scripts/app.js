@@ -72,10 +72,20 @@ angular
         title: 'Información General'
     };
     
+    var categoriesState = {
+        name: 'categories',
+        url: '/categories',
+        templateUrl: 'views/categories.html',
+        controller: 'CategoriesCtrl',
+        controllerAs: 'categories',
+        title: 'Categorías'
+    };
+    
     $stateProvider.state(mainState);
     $stateProvider.state(infosState);
     $stateProvider.state(slidesState);
     $stateProvider.state(usersLoginState);
+    $stateProvider.state(categoriesState);
     $urlRouterProvider.when('', '/');
 })
 .run(function($rootScope, $state, $cookies, $location, $window, envService) {

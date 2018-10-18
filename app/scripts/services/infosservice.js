@@ -12,11 +12,17 @@ angular.module('proagrocorpAdminFrontendApp')
     return $resource(envService.getHost() + 'infos/:id.json', {}, {
         getMany: {
             method: 'POST',
-            url: envService.getHost() + 'infos/getMany.json',
+            url: envService.getHost() + 'infos/getMany.json'
         },
         indexAdmin: {
             method: 'POST',
-            url: envService.getHost() + 'infos/indexAdmin.json',
+            url: envService.getHost() + 'infos/indexAdmin.json'
+        },
+        previewImagen: {
+            method: 'POST',
+            url: envService.getHost() + 'infos/previewImagen.json',
+            transformRequest: angular.identity,
+            headers: { 'Content-Type': undefined }
         }
     });
 });

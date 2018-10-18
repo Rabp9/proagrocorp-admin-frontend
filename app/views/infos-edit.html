@@ -13,7 +13,19 @@
             <textarea ng-if="info.tipo === 'textarea'" id="txtaValor" class="form-control" ng-model="info.valor" ui-tinymce="tinymcePagesOptions"
                 style="height: 250px;" name="infoValor"></textarea>
             <textarea ng-if="info.tipo === 'text'" id="txtaValor" class="form-control" ng-model="info.valor" style="height: 250px;" name="infoValor"></textarea>
-            <input ng-if="info.tipo === 'image'"  id="flImagen" type="file" class="form-control" ngf-select="upload($file, $invalidFiles)" 
+            <input ng-if="info.tipo === 'url'" id="txtValor" type="url" class="form-control" ng-model="info.valor"
+                name="infoValor" invalid-message="'Ingrese una url correctamente'" validate-on="blur"/>
+            
+            <div ng-if="info.tipo === 'image'">
+                <input id="flValor" type="file" class="form-control" ngf-select="previewImagen($file, $invalidFiles)" 
+                    accept="image/*" ngf-max-height="15000" ngf-max-size="10MB" name="infoTipo"/>
+                <img ng-hide="imagenPreview === undefined || imagenPreview === null" class="img-responsive" ng-src="{{tmpPath + '/' + imagenPreview}}" alt="imagen previa" >
+                <span ng-hide="loadingImagen === true || imagenPreview === undefined || imagenPreview === null">Imagen cargada correctamente</span>
+                <span ng-show="loadingImagen">Cargando...</span>
+                <span ng-show="loadingImagen === null">No fue posible cargar la Imagen</span>
+            </div>
+            
+            <input ng-if="info.tipo === 'textarea'" style="display: none;" ng-if="info.tipo === 'image'"  id="flImagen" type="file" class="form-control" ngf-select="upload($file, $invalidFiles)" 
                 accept="image/*" ngf-max-height="5000" ngf-max-size="10MB" name="imagen"/>
         </div>
     </div>

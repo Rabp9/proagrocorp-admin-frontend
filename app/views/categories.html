@@ -1,1 +1,55 @@
-<p>This is the categories view.</p>
+<ol class="breadcrumb">
+    <li><a href="#">Inicio</a></li>
+    <li>Noticias</li>
+</ol>
+<div class="alert alert-dismissible" ng-class="{'alert-success': message.code === 200, 'alert-danger': message.code !== 200 }" role="alert" ng-show="message.code !== undefined">
+    <button type="button" class="close" ng-click="message.code = undefined" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+    {{ message.message }} 
+</div>
+<h2>Noticias</h2>
+<hr>
+<div class="row">
+    <div class="col-sm-10 col-sm-offset-1"> 
+        <button type="button" class="btn btn-primary" ng-click="showNoticiasAdd($event)"><span class="glyphicon glyphicon-plus"></span> Nuevo Noticia</button>
+        <div class="radio">
+            <label>
+                <input type="radio" ng-model="search.estado_id" value=""> 
+                Todos
+            </label>
+            <label>
+                <input type="radio" ng-model="search.estado_id" value="1"> 
+                Activos
+            </label>
+            <label>
+                <input type="radio" ng-model="search.estado_id" value="2"> 
+                Inactivos
+            </label>
+        </div>
+        <scrollable-table watch="noticias" class="table-responsive">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th sortable-header col="id">Código</th>
+                        <th sortable-header col="titulo">Título</th>
+                        <th sortable-header col="subtitulo">Sub título</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-show="loading"><td colspan="4">Cargando...</td></tr>
+                    <tr ng-show="!loading && noticias.length === 0"><td colspan="4">No hay registros</td></tr>
+                    <tr ng-show="!loading && noticias.length !== 0" ng-class="{'danger': noticia.estado_id === 2}" ng-repeat="noticia in noticias | toArray:false | filter:search" row-id="{{ noticia.id }}">
+                        <td>{{ noticia.id }}</td>
+                        <td>{{ noticia.titulo }}</td>
+                        <td>{{ noticia.subtitulo }}</td>
+                        <td>
+                            <button type="button" class="btn btn-primary btn-sm" ng-click="showNoticiasEdit(noticia, $event)"><span class="glyphicon glyphicon-pencil"></span></button>
+                            <button ng-show="noticia.estado_id === 1" type="button" class="btn btn-danger btn-sm" ng-click="showNoticiasDelete(noticia)" title="Deshabilitar"><span class="glyphicon glyphicon-remove"></span></button>
+                            <button ng-show="noticia.estado_id === 2" type="button" class="btn btn-default btn-sm" ng-click="showNoticiasActivate(noticia)" title="Activar"><span class="glyphicon glyphicon-ok"></span></button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </scrollable-table>
+    </div>
+</div>

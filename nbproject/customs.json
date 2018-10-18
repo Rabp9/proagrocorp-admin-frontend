@@ -1,8 +1,13 @@
 {
-    "elements": {},
+    "elements": {
+        "scrollable-table": {}
+    },
     "attributes": {
         "angular-validator": {
             "context": "form"
+        },
+        "ngf-select": {
+            "context": "input"
         },
         "ui-sref-active": {
             "context": "a"
