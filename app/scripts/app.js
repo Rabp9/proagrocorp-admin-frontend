@@ -23,7 +23,8 @@ angular
     'angularValidator',
     'scrollable-table',
     'ui.router',
-    'angular-toArrayFilter'
+    'angular-toArrayFilter',
+    'treeControl'
 ])
 .config(function($stateProvider, $urlRouterProvider, $httpProvider) {
     $httpProvider.interceptors.push('oAuthHttpInterceptor');
