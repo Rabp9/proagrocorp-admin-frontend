@@ -13,6 +13,10 @@ angular.module('proagrocorpAdminFrontendApp')
         getAdmin: {
             method: 'GET',
             url: envService.getHost() + 'categories/getAdmin/.json'
+        },
+        getTreeList: {
+            method: 'GET',
+            url: envService.getHost() + 'categories/getTreeList/:spacer.json'
         }
     });
 });

@@ -1,16 +1,16 @@
 <ol class="breadcrumb">
     <li><a href="#">Inicio</a></li>
-    <li>Noticias</li>
+    <li>Categorías</li>
 </ol>
 <div class="alert alert-dismissible" ng-class="{'alert-success': message.code === 200, 'alert-danger': message.code !== 200 }" role="alert" ng-show="message.code !== undefined">
     <button type="button" class="close" ng-click="message.code = undefined" aria-label="Close"><span aria-hidden="true">&times;</span></button>
     {{ message.message }} 
 </div>
-<h2>Noticias</h2>
+<h2>Categorías</h2>
 <hr>
 <div class="row">
     <div class="col-sm-10 col-sm-offset-1"> 
-        <button type="button" class="btn btn-primary" ng-click="showNoticiasAdd($event)"><span class="glyphicon glyphicon-plus"></span> Nuevo Noticia</button>
+        <button type="button" class="btn btn-primary" ng-click="showNoticiasAdd($event)"><span class="glyphicon glyphicon-plus"></span> Nueva Categoría</button>
         <div class="radio">
             <label>
                 <input type="radio" ng-model="search.estado_id" value=""> 
