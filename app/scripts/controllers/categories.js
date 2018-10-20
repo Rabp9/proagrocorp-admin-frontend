@@ -8,7 +8,7 @@
  * Controller of the proagrocorpAdminFrontendApp
  */
 angular.module('proagrocorpAdminFrontendApp')
-.controller('CategoriesCtrl', function ($scope, categoriesService) {
+.controller('CategoriesCtrl', function ($scope, categoriesService, $uibModal, $utilsViewService) {
     $scope.treeOptions = {
         nodeChildren: "children",
         dirSelectable: true,
@@ -24,22 +24,35 @@ angular.module('proagrocorpAdminFrontendApp')
         }
     };
     
-    $scope.init = function() {
-        
+    $scope.getCategories = function() {
+        $scope.loading = true;
+        categoriesService.get(function(data) {
+            $scope.categories = data.categories;
+            $scope.loading = false;
+        });
     };
     
-    $scope.dataForTheTree =
-    [
-            { "name" : "Joe", "age" : "21", "children" : [
-                    { "name" : "Smith", "age" : "42", "children" : [] },
-                    { "name" : "Gary", "age" : "21", "children" : [
-                            { "name" : "Jenifer", "age" : "23", "children" : [
-                                    { "name" : "Dani", "age" : "32", "children" : [] },
-                                    { "name" : "Max", "age" : "34", "children" : [] }
-                            ]}
-                    ]}
-            ]},
-            { "name" : "Albert", "age" : "33", "children" : [] },
-            { "name" : "Ron", "age" : "29", "children" : [] }
-    ];
+    $scope.init = function() {
+        $scope.getCategories();
+    };
+    
+    $scope.showCategoriesEdit = function(category, event) {        
+        var modalInstanceEdit = $uibModal.open({
+            templateUrl: 'views/categories-edit.html',
+            controller: 'CategoriesEditCtrl',
+            backdrop: false,
+            resolve: {
+                category: function() {
+                    return category;
+                }
+            }
+        });
+        
+        modalInstanceEdit.result.then(function (data) {
+            $scope.getCategories();
+            $scope.message = data;
+        });
+    };
+    
+    $scope.init();
 });

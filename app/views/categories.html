@@ -26,11 +26,11 @@
             </label>
         </div>
         <treecontrol class="tree-classic"
-            tree-model="dataForTheTree"
+            tree-model="categories"
             options="treeOptions"
-            on-selection="showSelected(node)"
+            on-selection="showCategoriesEdit(node)"
             selected-node="node1">
-            employee: {{node.name}} age {{node.age}}
+            {{ node.id }}: {{ node.descripcion }}
         </treecontrol>
     </div>
 </div>
