@@ -58,7 +58,7 @@ angular.module('proagrocorpAdminFrontendApp')
         });
     };
     
-    $scope.showCategoriesEdit = function(category, event) {        
+    $scope.showCategoriesEdit = function(category, event) {
         var modalInstanceEdit = $uibModal.open({
             templateUrl: 'views/categories-edit.html',
             controller: 'CategoriesEditCtrl',

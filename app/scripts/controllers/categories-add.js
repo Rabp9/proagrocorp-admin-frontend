@@ -8,7 +8,7 @@
  * Controller of the proagrocorpAdminFrontendApp
  */
 angular.module('proagrocorpAdminFrontendApp')
-.controller('CategoriesAddCtrl', function ($scope, categoriesService, $rootScope, $uibModalInstance) {
+.controller('CategoriesAddCtrl', function ($scope, categoriesService, $rootScope, $uibModalInstance, $utilsViewService) {
     $scope.category = {};
     $scope.tmpPath = $rootScope.pathLocation + 'tmp';
     
@@ -16,6 +16,23 @@ angular.module('proagrocorpAdminFrontendApp')
         $uibModalInstance.dismiss('cancel');
     };
 
+    $scope.saveCategory = function(category, boton, portadaPreview) {
+        $('#' + boton).text('Guardando...');
+        $utilsViewService.disable('#' + boton);
+       
+        if (portadaPreview !== null) {
+            category.portada = portadaPreview;
+        }
+        category.estado_id = 1;
+        categoriesService.save(category, function(data) {
+            $utilsViewService.enable('#' + boton);
+            $uibModalInstance.close(data);
+        }, function(err) {
+            $utilsViewService.enable('#' + boton);
+            $uibModalInstance.close(err.data);
+        });
+    };
+    
     $scope.getCategoriesParent = function() {
         $scope.loadingCategories = true;
         categoriesService.getTreeList({spacer: '_'}, function(data) {
