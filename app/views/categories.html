@@ -10,7 +10,7 @@
 <hr>
 <div class="row">
     <div class="col-sm-10 col-sm-offset-1"> 
-        <button type="button" class="btn btn-primary" ng-click="showNoticiasAdd($event)"><span class="glyphicon glyphicon-plus"></span> Nueva Categoría</button>
+        <button type="button" class="btn btn-primary" ng-click="showCategoriesAdd($event)"><span class="glyphicon glyphicon-plus"></span> Nueva Categoría</button>
         <div class="radio">
             <label>
                 <input type="radio" ng-model="search.estado_id" value=""> 
@@ -25,7 +25,8 @@
                 Inactivos
             </label>
         </div>
-        <treecontrol class="tree-classic"
+        <h4 ng-hide="!loading">Cargando...</h4>
+        <treecontrol ng-hide="loading" class="tree-classic"
             tree-model="categories"
             options="treeOptions"
             on-selection="showCategoriesEdit(node)"

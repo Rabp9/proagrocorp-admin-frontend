@@ -17,7 +17,7 @@ angular.module('proagrocorpAdminFrontendApp')
             $scope.categoriesList = data.categories;
             $scope.loadingCategories = false;
             
-            angular.forEach(categoriesList, function(value, key) {
+            angular.forEach($scope.categoriesList, function(value, key) {
                 if (parseInt(value.id) === parseInt($scope.category.parent_id)) {
                     k = key;
                 }

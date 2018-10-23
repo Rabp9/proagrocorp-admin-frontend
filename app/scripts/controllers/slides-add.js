@@ -12,7 +12,7 @@ angular.module('proagrocorpAdminFrontendApp')
     $rootScope, $utilsViewService) {
     
     $scope.slide = {};
-    $scope.tmpPath = $rootScope.pathLocation + 'tmp'; 
+    $scope.tmpPath = $rootScope.pathLocation + 'tmp';
     $scope.loading = false;
     
     $scope.cancel = function() {

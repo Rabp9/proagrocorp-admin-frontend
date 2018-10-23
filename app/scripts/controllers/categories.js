@@ -28,16 +28,34 @@ angular.module('proagrocorpAdminFrontendApp')
         }
     };
     
+    $scope.$watch('search.estado_id', function(oldValue, newValue) {
+        $scope.getCategories();
+    });
+        
     $scope.getCategories = function() {
         $scope.loading = true;
-        categoriesService.get(function(data) {
+        categoriesService.get({estado_id: $scope.search.estado_id}, function(data) {
             $scope.categories = data.categories;
             $scope.loading = false;
         });
     };
     
-    $scope.init = function() {
-        $scope.getCategories();
+    $scope.showCategoriesAdd = function(event) {
+        $utilsViewService.disable(event.currentTarget);
+        
+        var modalInstanceAdd = $uibModal.open({
+            templateUrl: 'views/categories-add.html',
+            controller: 'CategoriesAddCtrl',
+            backdrop: false,
+            size: 'lg'
+        });
+        
+        $utilsViewService.enable(event.currentTarget);
+        
+        modalInstanceAdd.result.then(function (data) {
+            $scope.getCategories();
+            $scope.message = data;
+        });
     };
     
     $scope.showCategoriesEdit = function(category, event) {        
@@ -57,6 +75,10 @@ angular.module('proagrocorpAdminFrontendApp')
             $scope.getCategories();
             $scope.message = data;
         });
+    };
+    
+    $scope.init = function() {
+        $scope.getCategories();
     };
     
     $scope.init();

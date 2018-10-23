@@ -17,6 +17,12 @@ angular.module('proagrocorpAdminFrontendApp')
         getTreeList: {
             method: 'GET',
             url: envService.getHost() + 'categories/getTreeList/:spacer.json'
+        },
+        previewPortada: {
+            method: 'POST',
+            url: envService.getHost() + 'categories/previewPortada/.json',
+            transformRequest: angular.identity,
+            headers: { 'Content-Type': undefined }
         }
     });
 });
