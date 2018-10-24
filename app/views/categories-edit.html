@@ -13,7 +13,7 @@
             <div class="form-group col-sm-6">
                 <label for="sltCategory">Categoría</label>
                 <select id="sltCategory" class="form-control"
-                    ng-options="categoryParent.descripcion for categoryParent in categoriesList" ng-model="category.parent_id"
+                    ng-options="categoryParent.id as categoryParent.descripcion for categoryParent in categoriesList" ng-model="category.parent_id"
                     name="categoryParentId">
                     <option value="">Selecciona uno</option>
                 </select>
