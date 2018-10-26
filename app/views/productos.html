@@ -10,7 +10,7 @@
 <hr>
 <div class="row">
     <div class="col-sm-10 col-sm-offset-1"> 
-        <button type="button" class="btn btn-primary" ng-click="showProductosAdd($event)"><span class="glyphicon glyphicon-plus"></span> Nuevo Servicio</button>
+        <button type="button" class="btn btn-primary" ng-click="showProductosAdd($event)"><span class="glyphicon glyphicon-plus"></span> Nuevo Producto</button>
         <div class="radio">
             <label>
                 <input type="radio" ng-model="search.estado_id" value=""> 
@@ -25,27 +25,27 @@
                 Inactivos
             </label>
         </div>
-        <scrollable-table watch="servicios" class="table-responsive">
+        <scrollable-table watch="productos" class="table-responsive">
             <table class="table table-striped">
                 <thead>
                     <tr>
                         <th sortable-header col="id">Código</th>
-                        <th sortable-header col="titulo">Título</th>
-                        <th sortable-header col="subtitulo">Sub título</th>
+                        <th sortable-header col="category.descripcion">Categoría</th>
+                        <th sortable-header col="descripcion">Descripción</th>
                         <th>Acciones</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr ng-show="loading"><td colspan="4">Cargando...</td></tr>
-                    <tr ng-show="!loading && servicios.length === 0"><td colspan="4">No hay registros</td></tr>
-                    <tr ng-show="!loading && servicios.length !== 0" ng-class="{'danger': servicio.estado_id === 2}" ng-repeat="servicio in servicios | toArray:false | filter:search" row-id="{{ servicio.id }}">
-                        <td>{{ servicio.id }}</td>
-                        <td>{{ servicio.titulo }}</td>
-                        <td>{{ servicio.subtitulo }}</td>
+                    <tr ng-show="!loading && productos.length === 0"><td colspan="4">No hay registros</td></tr>
+                    <tr ng-show="!loading && productos.length !== 0" ng-class="{'danger': producto.estado_id === 2}" ng-repeat="producto in productos" row-id="{{ producto.id }}">
+                        <td>{{ producto.id }}</td>
+                        <td>{{ producto.category.descripcion }}</td>
+                        <td>{{ producto.descripcion }}</td>
                         <td>
-                            <button type="button" class="btn btn-primary btn-sm" ng-click="showServiciosEdit(servicio, $event)"><span class="glyphicon glyphicon-pencil"></span></button>
-                            <button ng-show="servicio.estado_id === 1" type="button" class="btn btn-danger btn-sm" ng-click="showServiciosDelete(servicio)" title="Deshabilitar"><span class="glyphicon glyphicon-remove"></span></button>
-                            <button ng-show="servicio.estado_id === 2" type="button" class="btn btn-default btn-sm" ng-click="showServiciosActivate(servicio)" title="Activar"><span class="glyphicon glyphicon-ok"></span></button>
+                            <button type="button" class="btn btn-primary btn-sm" ng-click="showProductosEdit(producto, $event)"><span class="glyphicon glyphicon-pencil"></span></button>
+                            <button ng-show="producto.estado_id === 1" type="button" class="btn btn-danger btn-sm" ng-click="showProductosDelete(producto)" title="Deshabilitar"><span class="glyphicon glyphicon-remove"></span></button>
+                            <button ng-show="producto.estado_id === 2" type="button" class="btn btn-default btn-sm" ng-click="showProductosActivate(producto)" title="Activar"><span class="glyphicon glyphicon-ok"></span></button>
                         </td>
                     </tr>
                 </tbody>

@@ -82,6 +82,15 @@ angular
         title: 'Categorías'
     };
     
+    var productosState = {
+        name: 'productos',
+        url: '/productos',
+        templateUrl: 'views/productos.html',
+        controller: 'ProductosCtrl',
+        controllerAs: 'productos',
+        title: 'Productos'
+    };
+    
     var usersState = {
         name: 'users',
         url: '/users',
@@ -105,6 +114,7 @@ angular
     $stateProvider.state(slidesState);
     $stateProvider.state(usersLoginState);
     $stateProvider.state(categoriesState);
+    $stateProvider.state(productosState);
     $stateProvider.state(usersState);
     $stateProvider.state(rolesState);
     $urlRouterProvider.when('', '/');
