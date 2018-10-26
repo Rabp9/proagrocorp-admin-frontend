@@ -82,11 +82,31 @@ angular
         title: 'Categorías'
     };
     
+    var usersState = {
+        name: 'users',
+        url: '/users',
+        templateUrl: 'views/users.html',
+        controller: 'UsersCtrl',
+        controllerAs: 'users',
+        title: 'Usuarios'
+    };
+    
+    var rolesState = {
+        name: 'roles',
+        url: '/roles',
+        templateUrl: 'views/roles.html',
+        controller: 'RolesCtrl',
+        controllerAs: 'roles',
+        title: 'Roles'
+    };
+    
     $stateProvider.state(mainState);
     $stateProvider.state(infosState);
     $stateProvider.state(slidesState);
     $stateProvider.state(usersLoginState);
     $stateProvider.state(categoriesState);
+    $stateProvider.state(usersState);
+    $stateProvider.state(rolesState);
     $urlRouterProvider.when('', '/');
 })
 .run(function($rootScope, $state, $cookies, $location, $window, envService) {
@@ -147,11 +167,11 @@ angular
         }
         if ($rootScope.user !== undefined) {
             if ($rootScope.user.rol.permisos.search(toState.name) >= 0) {
-                $rootScope.message_root = null;
+                $rootScope.messageRoot = null;
             } else {
                 if (toState.name !== 'main' && toState.name !== 'users-login') {
                     event.preventDefault();
-                    $rootScope.message_root = {
+                    $rootScope.messageRoot = {
                         type: 'error',
                         text: 'No tiene permisos'
                     };

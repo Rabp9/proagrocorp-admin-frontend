@@ -1,1 +1,57 @@
-<p>This is the users view.</p>
+<ol class="breadcrumb">
+    <li><a href="#">Inicio</a></li>
+    <li>Usuarios</li>
+</ol>
+<div class="alert alert-dismissible" ng-class="{'alert-success': message.code === 200, 'alert-danger': message.code !== 200 }" role="alert" ng-show="message.code !== undefined">
+    <button type="button" class="close" ng-click="message.code = undefined" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+    {{ message.message }} 
+</div>
+<h2>Usuarios</h2>
+<hr>
+<div class="row">
+    <div class="col-sm-10 col-sm-offset-1">
+        <button type="button" class="btn btn-primary" ng-click="showUsersAdd($event)"><span class="glyphicon glyphicon-plus"></span> Nuevo Usuario</button>
+        <div class="radio">
+            <label>
+                <input type="radio" ng-model="search.estado_id" value=""> 
+                Todos
+            </label>
+            <label>
+                <input type="radio" ng-model="search.estado_id" value="1"> 
+                Activos
+            </label>
+            <label>
+                <input type="radio" ng-model="search.estado_id" value="2"> 
+                Inactivos
+            </label>
+        </div>
+        <scrollable-table watch="users" class="table-responsive">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th sortable-header col="id">Código</th>
+                        <th style="width: 20%;" sortable-header col="username">Nombre de Usuario</th>
+                        <th sortable-header col="email">Email</th>
+                        <th sortable-header col="rol.descripcion">Rol</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-hide="!loading"><td colspan="5">Cargando...</td></tr>
+                    <tr ng-show="!loading && users.length === 0"><td colspan="5">No hay registros</td></tr>
+                    <tr ng-show='!loading && users.length !== 0' ng-class="{'danger': user.estado_id === 2}" ng-repeat="user in users | toArray:false | filter:search" row-id="{{ user.id }}">
+                        <td>{{ user.id }}</td>
+                        <td style="width: 20%;">{{ user.username }}</td>
+                        <td>{{ user.email }}</td>
+                        <td>{{ user.rol.descripcion }}</td>
+                        <td>
+                            <button type="button" class="btn btn-primary btn-sm" ng-click="showUsersEdit(user, $event)"><span class="glyphicon glyphicon-pencil"></span></button>
+                            <button ng-show="user.estado_id === 1" type="button" class="btn btn-danger btn-sm" ng-click="showUsersDelete(user)" title="Deshabilitar"><span class="glyphicon glyphicon-remove"></span></button>
+                            <button ng-show="user.estado_id === 2" type="button" class="btn btn-default btn-sm" ng-click="showUsersActivate(user)" title="Activar"><span class="glyphicon glyphicon-ok"></span></button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </scrollable-table>
+    </div>
+</div>

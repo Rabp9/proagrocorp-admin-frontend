@@ -42,25 +42,13 @@
                     <a ui-sref-active="active" ui-sref="infos">Información General</a>
                 </li>
                 <li>
-                    <a ui-sref-active="active" ui-sref="nosotros">Nosotros</a>
-                </li>
-                <li>
                     <a ui-sref-active="active" ui-sref="slides">Slides</a>
                 </li>
                 <li>
                     <a ui-sref-active="active" ui-sref="categories">Categories</a>
                 </li>
                 <li>
-                    <a ui-sref-active="active" ui-sref="servicios">Servicios</a>
-                </li>
-                <li>
-                    <a ui-sref-active="active" ui-sref="noticias">Noticias</a>
-                </li>
-                <li>
-                    <a ui-sref-active="active" ui-sref="directorio">Directorio</a>
-                </li>
-                <li>
-                    <a ui-sref-active="active" ui-sref="cabeceras">Cabeceras</a>
+                    <a ui-sref-active="active" ui-sref="productos">Productos</a>
                 </li>
                 <li>
                     <a ui-sref-active="active" ui-sref="roles">Roles</a>
@@ -97,25 +85,13 @@
                             <a ui-sref="infos">Información General</a>
                         </li>
                         <li ui-sref-active="active">
-                            <a ui-sref="nosotros">Nosotros</a>
-                        </li>
-                        <li ui-sref-active="active">
                             <a ui-sref="slides">Slides</a>
                         </li>
                         <li ui-sref-active="active">
                             <a ui-sref="categories">Categories</a>
                         </li>
                         <li ui-sref-active="active">
-                            <a ui-sref="servicios">Servicios</a>
-                        </li>
-                        <li ui-sref-active="active">
-                            <a ui-sref="noticias">Noticias</a>
-                        </li>
-                        <li ui-sref-active="active">
-                            <a ui-sref="directorio">Directorio</a>
-                        </li>
-                        <li ui-sref-active="active">
-                            <a ui-sref="cabeceras">Cabeceras</a>
+                            <a ui-sref="productos">Productos</a>
                         </li>
                         <li ui-sref-active="active">
                             <a ui-sref="roles">Roles</a>
@@ -135,9 +111,9 @@
         <div id="page-content-wrapper">
             <div class="container-fluid">
                 
-                <div id="dvMessageRoot" class="alert alert-dismissible dvHidden" ng-class="{'alert-success': message_root.type === 'success', 'alert-danger': message_root.type === 'error'}" role="alert" ng-show="message_root.type !== undefined">
-                    <button type="button" class="close" ng-click="message_root.type = undefined" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    {{ message_root.text }} 
+                <div id="dvMessageRoot" class="alert alert-dismissible dvHidden" ng-class="{'alert-success': messageRoot.type === 'success', 'alert-danger': messageRoot.type === 'error'}" role="alert" ng-show="messageRoot.type !== undefined">
+                    <button type="button" class="close" ng-click="messageRoot.type = undefined" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    {{ messageRoot.text }} 
                 </div>
                 <ui-view ng-hide='layout.loading' ></ui-view>
             </div>
@@ -200,6 +176,11 @@
     <script src="scripts/controllers/infos-edit.js"></script>
     <script src="scripts/services/categoriesservice.js"></script>
     <script src="scripts/services/productosservice.js"></script>
+    <script src="scripts/controllers/users-add.js"></script>
+    <script src="scripts/controllers/roles-add.js"></script>
+    <script src="scripts/services/rolesservice.js"></script>
+    <script src="scripts/services/controllersservice.js"></script>
+    <script src="scripts/controllers/roles-edit.js"></script>
     <!-- endbuild -->
 </body>
 </html>
