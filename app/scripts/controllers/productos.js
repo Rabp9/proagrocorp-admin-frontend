@@ -8,7 +8,7 @@
  * Controller of the proagrocorpAdminFrontendApp
  */
 angular.module('proagrocorpAdminFrontendApp')
-.controller('ProductosCtrl', function ($scope, productosService, $utilsViewService) {
+.controller('ProductosCtrl', function ($scope, productosService, $utilsViewService, $uibModal) {
     $scope.search = {};
     $scope.search.estado_id = '1';
     
@@ -24,19 +24,19 @@ angular.module('proagrocorpAdminFrontendApp')
         $scope.getUsers();
     };
     
-    $scope.showUsersAdd = function(event) {
+    $scope.showProductosAdd = function(event) {
         $utilsViewService.disable(event.currentTarget);
         
         var modalInstanceAdd = $uibModal.open({
-            templateUrl: 'views/users-add.html',
-            controller: 'UsersAddCtrl',
+            templateUrl: 'views/productos-add.html',
+            controller: 'ProductosAddCtrl',
             backdrop: false
         });
         
         $utilsViewService.enable(event.currentTarget);
         
         modalInstanceAdd.result.then(function (data) {
-            $scope.getUsers();
+            $scope.getProductos();
             $scope.message = data;
         });
     };
