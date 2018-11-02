@@ -34,10 +34,10 @@ angular.module('proagrocorpAdminFrontendApp')
     };
     
     $scope.getCategoriesParent = function() {
-        $scope.loadingCategories = true;
+        $scope.loadingCategories = 'Cargando...';
         categoriesService.getTreeList({spacer: '_'}, function(data) {
             $scope.categoriesList = data.categories;
-            $scope.loadingCategories = false;
+            $scope.loadingCategories = 'Selecciona uno';
         });
     };
     

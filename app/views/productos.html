@@ -9,9 +9,25 @@
 <h2>Productos</h2>
 <hr>
 <div class="row">
-    <div class="col-sm-10 col-sm-offset-1"> 
-        <button type="button" class="btn btn-primary" ng-click="showProductosAdd($event)"><span class="glyphicon glyphicon-plus"></span> Nuevo Producto</button>
-        <div class="radio">
+    <div class="col-sm-12">
+        <form class="form-inline" ng-submit="search()">  
+            <button type="button" class="btn btn-primary" ng-click="showProductosAdd($event)"><span class="glyphicon glyphicon-plus"></span> Nuevo Producto</button>
+ 
+            <select id="sltCategory" class="form-control"
+                ng-options="category.id as category.descripcion for category in categories"
+                ng-model="search.category_id"
+                name="ctegoryIdSearch">
+                <option value="">{{ loadingCategories }}</option>
+            </select>
+            <div class="input-group">
+                <input id="srText" type="search" class="form-control" placeholder="Buscar..." ng-model="search.text">
+                <div class="input-group-btn">
+                    <button class="btn btn-default" type="submit"><span class="glyphicon glyphicon-search"></span></button>
+                </div>
+            </div>
+            
+        </form>
+        <div class="radio pull-left">
             <label>
                 <input type="radio" ng-model="search.estado_id" value=""> 
                 Todos
@@ -25,31 +41,42 @@
                 Inactivos
             </label>
         </div>
-        <scrollable-table watch="productos" class="table-responsive">
-            <table class="table table-striped">
-                <thead>
-                    <tr>
-                        <th sortable-header col="id">Código</th>
-                        <th sortable-header col="category.descripcion">Categoría</th>
-                        <th sortable-header col="descripcion">Descripción</th>
-                        <th>Acciones</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr ng-show="loading"><td colspan="4">Cargando...</td></tr>
-                    <tr ng-show="!loading && productos.length === 0"><td colspan="4">No hay registros</td></tr>
-                    <tr ng-show="!loading && productos.length !== 0" ng-class="{'danger': producto.estado_id === 2}" ng-repeat="producto in productos" row-id="{{ producto.id }}">
-                        <td>{{ producto.id }}</td>
-                        <td>{{ producto.category.descripcion }}</td>
-                        <td>{{ producto.descripcion }}</td>
-                        <td>
-                            <button type="button" class="btn btn-primary btn-sm" ng-click="showProductosEdit(producto, $event)"><span class="glyphicon glyphicon-pencil"></span></button>
-                            <button ng-show="producto.estado_id === 1" type="button" class="btn btn-danger btn-sm" ng-click="showProductosDelete(producto)" title="Deshabilitar"><span class="glyphicon glyphicon-remove"></span></button>
-                            <button ng-show="producto.estado_id === 2" type="button" class="btn btn-default btn-sm" ng-click="showProductosActivate(producto)" title="Activar"><span class="glyphicon glyphicon-ok"></span></button>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-        </scrollable-table>
+        <div class="pull-right">
+            Mostrando 
+            <select class="form-control" style="width: 70px; display: inline;" ng-change="onChangeItemsPerPage()"
+                ng-model="items_per_page" ng-options="option for option in [10, 50, 100, 150]">
+            </select> 
+            resultados por página
+        </div>
+        <div class="row">
+            <div class="col-sm-12">
+                <scrollable-table watch="productos" class="table-responsive">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th sortable-header col="id">Código</th>
+                                <th sortable-header col="category.descripcion">Categoría</th>
+                                <th sortable-header col="descripcion">Descripción</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-show="loading"><td colspan="4">Cargando...</td></tr>
+                            <tr ng-show="!loading && productos.length === 0"><td colspan="4">No hay registros</td></tr>
+                            <tr ng-show="!loading && productos.length !== 0" ng-class="{'danger': producto.estado_id === 2}" ng-repeat="producto in productos" row-id="{{ producto.id }}">
+                                <td>{{ producto.id }}</td>
+                                <td>{{ producto.category.descripcion }}</td>
+                                <td>{{ producto.descripcion }}</td>
+                                <td>
+                                    <button type="button" class="btn btn-primary btn-sm" ng-click="showProductosEdit(producto, $event)"><span class="glyphicon glyphicon-pencil"></span></button>
+                                    <button ng-show="producto.estado_id === 1" type="button" class="btn btn-danger btn-sm" ng-click="showProductosDelete(producto)" title="Deshabilitar"><span class="glyphicon glyphicon-remove"></span></button>
+                                    <button ng-show="producto.estado_id === 2" type="button" class="btn btn-default btn-sm" ng-click="showProductosActivate(producto)" title="Activar"><span class="glyphicon glyphicon-ok"></span></button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </scrollable-table>
+            </div>
+        </div>
     </div>
 </div>

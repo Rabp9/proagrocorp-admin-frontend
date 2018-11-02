@@ -22,6 +22,7 @@
             </label>
         </div>
         <h4 ng-hide="!loading">Cargando...</h4>
+        <h4 ng-show="!loading && categories.length === 0">No se encontraron categorías</h4>
         <treecontrol ng-hide="loading" class="tree-classic"
             tree-model="categories"
             options="treeOptions"

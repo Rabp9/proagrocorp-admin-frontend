@@ -8,20 +8,39 @@
  * Controller of the proagrocorpAdminFrontendApp
  */
 angular.module('proagrocorpAdminFrontendApp')
-.controller('ProductosCtrl', function ($scope, productosService, $utilsViewService, $uibModal) {
+.controller('ProductosCtrl', function ($scope, productosService, $utilsViewService, $uibModal, categoriesService) {
     $scope.search = {};
-    $scope.search.estado_id = '1';
+    $scope.search.text = '';
     
     $scope.getProductos = function() {
         $scope.loading = true;
-        productosService.getAdmin(function(data) {
+        $scope.productos = [];
+        productosService.get({
+            estado_id: $scope.search.estado_id,
+            text: $scope.search.text,
+            category_id: $scope.search.category_id,
+            page: $scope.page,
+            items_per_page: $scope.items_per_page
+        }, function(data) {
             $scope.productos = data.productos;
+            $scope.pagination = data.pagination;
             $scope.loading = false;
         });
     };
     
     $scope.init = function() {
-        $scope.getUsers();
+        $scope.getCategories();
+        $scope.search.estado_id = '1';
+        $scope.page = 1;
+        $scope.items_per_page = 10;
+    };
+    
+    $scope.getCategories = function() {
+        $scope.loadingCategories = 'Cargando...';
+        categoriesService.getTreeList({spacer: '_'}, function(data) {
+            $scope.categories = data.categories;
+            $scope.loadingCategories = 'Selecciona uno';
+        });
     };
     
     $scope.showProductosAdd = function(event) {
@@ -40,4 +59,42 @@ angular.module('proagrocorpAdminFrontendApp')
             $scope.message = data;
         });
     };
+    
+    $scope.showProductosDelete = function(producto) {
+        if (confirm('¿Está seguro de deshabilitar el producto?')) {
+            producto.estado_id = 2;
+            productosService.save(producto, function(data) {
+                $scope.message = data;
+                $scope.getProductos();
+            }, function(error) {
+                producto.estado_id = 1;
+            });
+        }
+    };
+    
+    $scope.$watch('search.estado_id', function(oldValue, newValue) {
+        $scope.page = 1;
+        $scope.getProductos();
+    });
+    
+    $scope.$watch('search.category_id', function(oldValue, newValue) {
+        $scope.page = 1;
+        $scope.getProductos();
+    });
+    
+    $scope.pageChanged = function() {
+        $scope.getProductos();
+    };
+    
+    $scope.onChangeItemsPerPage = function() {
+        $scope.page = 1;
+        $scope.getProductos();
+    };
+    
+    $scope.search = function() {
+        $scope.page = 1;
+        $scope.getProductos();
+    };
+    
+    $scope.init();    
 });
