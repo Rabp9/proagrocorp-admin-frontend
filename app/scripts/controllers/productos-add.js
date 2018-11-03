@@ -22,9 +22,17 @@ angular.module('proagrocorpAdminFrontendApp')
         $('#' + boton).text('Guardando...');
         $utilsViewService.disable('#' + boton);
        
-        if (imagenPreview !== null) {
+       
+        if (imagenPreview === undefined) {
+            alert('Debes seleccionar una imagen.');
+            $utilsViewService.enable('#' + boton);
+            $('#' + boton).text('Guardar');
+            return;
+        } else {
             producto.imagen = imagenPreview;
+            producto.changed = true;
         }
+        
         producto.estado_id = 1;
         productosService.save(producto, function(data) {
             $utilsViewService.enable('#' + boton);

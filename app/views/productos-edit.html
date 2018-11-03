@@ -1,1 +1,49 @@
-<p>This is the productos-edit view.</p>
+<form novalidate angular-validator angular-validator-submit="saveProducto(producto, 'btnSaveProducto', imagenPreview)" name="ProductosEdit">
+    <div class="modal-header">
+        <button type="button" class="close" ng-click="cancel()" data-dismiss="modal" aria-hidden="true"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Modificar Producto</h4>
+    </div>
+    <div class="modal-body modal-body-overflow">
+        <div class="form-group">
+            <label for="txtDescripcion">Descripción</label>
+            <input id="txtDescripcion" class="form-control" type="text" ng-model="producto.descripcion" 
+                name="productoDescripcion" required required-message="'Este campo es requerido'" validate-on="blur" />
+        </div>
+        <div class="form-group">
+            <label for="txtNombre2">Nombre 2</label>
+            <input id="txtNombre2" class="form-control" type="text" ng-model="producto.nombre2" 
+                name="productoNombre2" />
+        </div>
+        <div class="form-group">
+            <label for="txtNombre3">Nombre 3</label>
+            <input id="txtNombre3" class="form-control" type="text" ng-model="producto.nombre3" 
+                name="productoNombre3" />
+        </div>
+        <div class="form-group">
+            <label for="sltCategory">Categoría</label>
+            <select id="sltCategory" class="form-control"
+                ng-options="category.id as category.descripcion for category in categories" ng-model="producto.category_id"
+                name="productoCategoryId">
+                <option value="">{{ loadingCategories }}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="flImagen">Imagen</label>
+            <input id="flImagen" type="file" class="form-control" ngf-select="previewImagen($file, $invalidFiles)" 
+                accept="image/*" ngf-max-height="15000" ngf-max-size="10MB" name="productoImagen" />
+            <img ng-hide="imagenPreview === undefined || imagenPreview === null" class="img-responsive" ng-src="{{tmpPath + '/' + imagenPreview}}" alt="imagen previa" >
+            <span ng-hide="imagenPreview === undefined || imagenPreview === null">Imagen cargada correctamente</span>
+            <span ng-show="loadingPortada">Cargando...</span>
+            <span ng-show="!loading && loadingPortada === null">No fue posible cargar la Portada</span>
+        </div>
+        <div class="form-group">
+            <label for="txtaDetalle">Detalle</label>
+            <textarea id="txtaDetalle" class="form-control textarea-3x"
+                ng-model="producto.detalle" ui-tinymce="tinymceOptions" name="productoDetalle"></textarea>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" ng-click="cancel()">Cerrar</button>
+        <button id="btnSaveProducto" class="btn btn-success" type="submit">Guardar Producto</button>
+    </div>
+</form>

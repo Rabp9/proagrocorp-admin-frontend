@@ -60,6 +60,28 @@ angular.module('proagrocorpAdminFrontendApp')
         });
     };
     
+    $scope.showProductosEdit = function(producto, event) {
+        $utilsViewService.disable(event.currentTarget);
+        
+        var modalInstanceAdd = $uibModal.open({
+            templateUrl: 'views/productos-edit.html',
+            controller: 'ProductosEditCtrl',
+            backdrop: false,
+            resolve: {
+                producto: function() {
+                    return producto;
+                }
+            }
+        });
+        
+        $utilsViewService.enable(event.currentTarget);
+        
+        modalInstanceAdd.result.then(function (data) {
+            $scope.getProductos();
+            $scope.message = data;
+        });
+    };
+    
     $scope.showProductosDelete = function(producto) {
         if (confirm('¿Está seguro de deshabilitar el producto?')) {
             producto.estado_id = 2;
