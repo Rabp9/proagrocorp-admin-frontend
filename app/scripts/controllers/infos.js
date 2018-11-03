@@ -9,7 +9,7 @@
  */
 angular.module('proagrocorpAdminFrontendApp')
 .controller('InfosCtrl', function ($scope, infosService, $uibModal, $utilsViewService) {
-    var search = ['logo', 'descripcion', 'video', 'copyright', 'nosotros'];
+    var search = ['logo', 'descripcion', 'video', 'copyright', 'nosotros', 'bg_descripcion'];
     
     $scope.getInfos = function() {
         $scope.loading = true;
