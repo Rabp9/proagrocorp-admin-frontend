@@ -2,36 +2,33 @@
 
 /**
  * @ngdoc function
- * @name proagrocorpAdminFrontendApp.controller:RolesEditCtrl
+ * @name proagrocorpAdminFrontendApp.controller:UsersEditCtrl
  * @description
- * # RolesEditCtrl
+ * # UsersEditCtrl
  * Controller of the proagrocorpAdminFrontendApp
  */
 angular.module('proagrocorpAdminFrontendApp')
-.controller('RolesEditCtrl', function ($scope, rol, $uibModalInstance, rolesService,
-    $utilsViewService) {
-    
+.controller('UsersEditCtrl', function ($scope, user, $uibModalInstance, usersService, 
+    rolesService, $utilsViewService) {
+        
     $scope.init = function() {
-        $scope.getRol();
-    };
-    
-    $scope.getRol = function() {
-        $scope.loading = true;
-        rolesService.get({id: rol.id}, function(data) {
-            $scope.rol = data.rol;
-            $scope.loading = false;
+        usersService.get({id: user.id}, function(data) {
+            $scope.user = data.user;
+            rolesService.get(function(data) {
+                $scope.roles = data.roles;
+            });
         });
-    }
-    
+    };
+        
     $scope.cancel = function() {
         $uibModalInstance.dismiss('cancel');
     };
 
-    $scope.saveRol = function(rol, boton) {
+    $scope.saveUser = function(user, boton) {
         $('#' + boton).text('Guardando...');
         $utilsViewService.disable('#' + boton);
         
-        rolesService.save(rol, function(data) {
+        usersService.save(user, function(data) {
             $utilsViewService.enable('#' + boton);
             $uibModalInstance.close(data);
         }, function(err) {
