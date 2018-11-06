@@ -1,0 +1,78 @@
+<ol class="breadcrumb">
+    <li><a href="#">Inicio</a></li>
+    <li>Links</li>
+</ol>
+<div class="alert alert-dismissible" ng-class="{'alert-success': message.code === 200, 'alert-danger': message.code !== 200 }" role="alert" ng-show="message.code !== undefined">
+    <button type="button" class="close" ng-click="message.code = undefined" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+    {{ message.message }} 
+</div>
+<h2>Links</h2>
+<hr>
+<div class="row">
+    <div class="col-sm-12">
+        <form class="form-inline" ng-submit="search()">  
+            <button type="button" class="btn btn-primary" ng-click="showLinksAdd($event)"><span class="glyphicon glyphicon-plus"></span> Nuevo Link</button>
+ 
+            <div class="input-group">
+                <input id="srText" type="search" class="form-control" placeholder="Buscar..." ng-model="search.text">
+                <div class="input-group-btn">
+                    <button class="btn btn-default" type="submit"><span class="glyphicon glyphicon-search"></span></button>
+                </div>
+            </div>
+            
+        </form>
+        <div class="radio pull-left">
+            <label>
+                <input type="radio" ng-model="search.estado_id" value=""> 
+                Todos
+            </label>
+            <label>
+                <input type="radio" ng-model="search.estado_id" value="1"> 
+                Activos
+            </label>
+            <label>
+                <input type="radio" ng-model="search.estado_id" value="2"> 
+                Inactivos
+            </label>
+        </div>
+        <div class="pull-right">
+            Mostrando 
+            <select class="form-control" style="width: 70px; display: inline;" ng-change="onChangeItemsPerPage()"
+                ng-model="items_per_page" ng-options="option for option in [10, 50, 100, 150]">
+            </select> 
+            resultados por página
+        </div>
+        <div class="row">
+            <div class="col-sm-12">
+                <scrollable-table watch="productos" class="table-responsive">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th sortable-header col="id">Código</th>
+                                <th sortable-header col="descripcion">Descripción</th>
+                                <th sortable-header col="url">URL</th>
+                                <th sortable-header col="ubicacion">Ubicación</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-show="loading"><td colspan="5">Cargando...</td></tr>
+                            <tr ng-show="!loading && links.length === 0"><td colspan="5">No hay registros</td></tr>
+                            <tr ng-show="!loading && links.length !== 0" ng-class="{'danger': link.estado_id === 2}" ng-repeat="link in links" row-id="{{ link.id }}">
+                                <td>{{ link.id }}</td>
+                                <td>{{ link.descripcion }}</td>
+                                <td>{{ link.url }}</td>
+                                <td>{{ link.ubicacion }}</td>
+                                <td>
+                                    <button type="button" class="btn btn-primary btn-sm" ng-click="showLinksEdit(link, $event)"><span class="glyphicon glyphicon-pencil"></span></button>
+                                    <button ng-show="link.estado_id === 1" type="button" class="btn btn-danger btn-sm" ng-click="showLinksDelete(link)" title="Deshabilitar"><span class="glyphicon glyphicon-remove"></span></button>
+                                    <button ng-show="link.estado_id === 2" type="button" class="btn btn-default btn-sm" ng-click="showLinksActivate(link)" title="Activar"><span class="glyphicon glyphicon-ok"></span></button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </scrollable-table>
+            </div>
+        </div>
+    </div>
+</div>

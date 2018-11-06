@@ -91,6 +91,15 @@ angular
         title: 'Productos'
     };
     
+    var linksState = {
+        name: 'links',
+        url: '/links',
+        templateUrl: 'views/links.html',
+        controller: 'LinksCtrl',
+        controllerAs: 'links',
+        title: 'Links'
+    };
+    
     var usersState = {
         name: 'users',
         url: '/users',
@@ -115,6 +124,7 @@ angular
     $stateProvider.state(usersLoginState);
     $stateProvider.state(categoriesState);
     $stateProvider.state(productosState);
+    $stateProvider.state(linksState);
     $stateProvider.state(usersState);
     $stateProvider.state(rolesState);
     $urlRouterProvider.when('', '/');
