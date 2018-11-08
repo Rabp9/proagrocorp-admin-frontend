@@ -22,7 +22,6 @@ angular.module('proagrocorpAdminFrontendApp')
         $('#' + boton).text('Guardando...');
         $utilsViewService.disable('#' + boton);
        
-       
         if (imagenPreview === undefined) {
             alert('Debes seleccionar una imagen.');
             $utilsViewService.enable('#' + boton);

@@ -72,14 +72,26 @@ angular.module('proagrocorpAdminFrontendApp')
         });
     };
     
-    $scope.showLinksDelete = function(producto) {
+    $scope.showLinksDelete = function(link) {
         if (confirm('¿Está seguro de deshabilitar el link?')) {
             link.estado_id = 2;
             linksService.save(link, function(data) {
                 $scope.message = data;
                 $scope.getLinks();
             }, function(error) {
-                producto.estado_id = 1;
+                link.estado_id = 1;
+            });
+        }
+    };
+    
+    $scope.showLinksActivate = function(link) {
+        if (confirm('¿Está seguro de habilitar el link?')) {
+            link.estado_id = 1;
+            linksService.save(link, function(data) {
+                $scope.message = data;
+                $scope.getLinks();
+            }, function(error) {
+                link.estado_id = 2;
             });
         }
     };

@@ -8,7 +8,21 @@
 </div>
 <h2>Slides</h2>
 <hr>
-<button class="btn btn-primary" ng-click="saveOrden(slides, $event)"><span class="glyphicon glyphicon-ok"></span> Guardar Orden</button>
+<button class="btn btn-primary pull-right" ng-click="saveOrden(slides, $event)"><span class="glyphicon glyphicon-ok"></span> Guardar Orden</button>
+<div class="radio pull-left">
+    <label>
+        <input type="radio" ng-model="search.estado_id" value=""> 
+        Todos
+    </label>
+    <label>
+        <input type="radio" ng-model="search.estado_id" value="1"> 
+        Activos
+    </label>
+    <label>
+        <input type="radio" ng-model="search.estado_id" value="2"> 
+        Inactivos
+    </label>
+</div>
 <br><br>
 <div class="row slider">
     <h3 ng-hide="!loading">Cargando...</h3>
@@ -24,7 +38,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-sm-2">
+        <div ng-hide="loading" class="col-sm-2">
             <div class="slide cruz" ng-click="showSlidesAdd($event)">
                 <img class="img-responsive" src="images/cruz-mas.svg" alt="más" />
                 <div class="edit animated fadeIn animation-slow">

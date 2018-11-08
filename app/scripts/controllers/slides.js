@@ -9,6 +9,8 @@
  */
 angular.module('proagrocorpAdminFrontendApp')
 .controller('SlidesCtrl', function ($scope, slidesService, $uibModal, $utilsViewService) {
+    $scope.search = {};
+    
     $scope.getSlides = function() {
         $scope.loading = true;
         slidesService.getAdmin(function(data) {
@@ -18,6 +20,7 @@ angular.module('proagrocorpAdminFrontendApp')
     };
     
     $scope.init = function() {
+        $scope.search.estado_id = '1';
         $scope.getSlides();
     };
     
@@ -80,6 +83,11 @@ angular.module('proagrocorpAdminFrontendApp')
             $scope.message = data;
         });
     };
+    
+    $scope.$watch('search.estado_id', function(oldValue, newValue) {
+        $scope.page = 1;
+        $scope.getSlides();
+    });
     
     $scope.init();
 });
