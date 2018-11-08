@@ -25,7 +25,8 @@
         </div>
         <div class="form-group">
             <label for="sltUbicacion">Ubicación</label>
-            <select id="sltUbicacion" ng-options="ubicacion for ubicacion in ubicaciones" class="form-control" ng-model="link.ubicacion" name="linkUbicacion">
+            <select id="sltUbicacion" ng-options="ubicacion for ubicacion in ubicaciones" class="form-control" ng-model="link.ubicacion" 
+                name="linkUbicacion" required required-message="'Este campo es requerido'" validate-on="blur">
                 <option value="">Seleccionr uno</option>
             </select>
         </div>

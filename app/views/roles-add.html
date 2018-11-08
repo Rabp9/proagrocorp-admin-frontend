@@ -1,4 +1,4 @@
-<form novalidate angular-validator angular-validator-submit="saveRol(rol, 'btnSaveRol')" name="rolesAdd" angular-validator-quiet>
+<form novalidate angular-validator angular-validator-submit="saveRol(rol, 'btnSaveRol')" name="rolesAdd">
     <div class="modal-header">
         <button type="button" class="close" ng-click="cancel()" data-dismiss="modal" aria-hidden="true"><span aria-hidden="true">&times;</span></button>
         <h4 class="modal-title">Nuevo Rol</h4>
@@ -6,8 +6,8 @@
     <div class="modal-body">
         <div class="form-group">
             <label for="txtDescripcion">Descripción</label>
-            <input id="txtDescripcion" class="form-control" type="text" ng-model="rol.descripcion" required 
-                name="rolDescripcion" required-message="'Este campo es requerido'" validate-on="blur"/>
+            <input id="txtDescripcion" class="form-control" type="text" ng-model="rol.descripcion"
+                name="rolDescripcion" required required-message="'Este campo es requerido'" validate-on="blur"/>
         </div>
         <p>Con acceso a:</p>
         <span ng-show="loading">Cargando...</span>

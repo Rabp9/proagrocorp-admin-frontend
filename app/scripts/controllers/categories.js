@@ -29,7 +29,9 @@ angular.module('proagrocorpAdminFrontendApp')
     };
     
     $scope.$watch('search.estado_id', function(oldValue, newValue) {
-        $scope.getCategories();
+        if ($scope.search.estado_id === 1) {
+            $scope.getCategories();
+        }
     });
         
     $scope.getCategories = function() {

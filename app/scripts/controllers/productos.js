@@ -84,12 +84,28 @@ angular.module('proagrocorpAdminFrontendApp')
     
     $scope.showProductosDelete = function(producto) {
         if (confirm('¿Está seguro de deshabilitar el producto?')) {
+            $scope.loading = true;
             producto.estado_id = 2;
             productosService.save(producto, function(data) {
                 $scope.message = data;
                 $scope.getProductos();
+                $scope.loading = false;
             }, function(error) {
                 producto.estado_id = 1;
+            });
+        }
+    };
+    
+    $scope.showProductosActivate = function(producto) {
+        if (confirm('¿Está seguro de habilitar el producto?')) {
+            $scope.loading = true;
+            producto.estado_id = 1;
+            productosService.save(producto, function(data) {
+                $scope.message = data;
+                $scope.getProductos();
+                $scope.loading = false;
+            }, function(error) {
+                link.estado_id = 2;
             });
         }
     };

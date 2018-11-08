@@ -13,7 +13,9 @@ angular.module('proagrocorpAdminFrontendApp')
     
     $scope.getSlides = function() {
         $scope.loading = true;
-        slidesService.getAdmin(function(data) {
+        slidesService.getAdmin({
+            estado_id: $scope.search.estado_id,
+        }, function(data) {
             $scope.slides = data.slides;
             $scope.loading = false;
         });

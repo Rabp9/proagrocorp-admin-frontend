@@ -74,10 +74,12 @@ angular.module('proagrocorpAdminFrontendApp')
     
     $scope.showLinksDelete = function(link) {
         if (confirm('¿Está seguro de deshabilitar el link?')) {
+            $scope.loading = true;
             link.estado_id = 2;
             linksService.save(link, function(data) {
                 $scope.message = data;
                 $scope.getLinks();
+                $scope.loading = false;
             }, function(error) {
                 link.estado_id = 1;
             });

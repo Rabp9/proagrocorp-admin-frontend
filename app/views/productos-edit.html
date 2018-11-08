@@ -23,7 +23,7 @@
             <label for="sltCategory">Categoría</label>
             <select id="sltCategory" class="form-control"
                 ng-options="category.id as category.descripcion for category in categories" ng-model="producto.category_id"
-                name="productoCategoryId">
+                name="productoCategoryId" required required-message="'Este campo es requerido'" validate-on="blur">
                 <option value="">{{ loadingCategories }}</option>
             </select>
         </div>
