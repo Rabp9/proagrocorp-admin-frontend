@@ -15,7 +15,7 @@
                 <select id="sltCategory" class="form-control"
                     ng-options="categoryParent.id as categoryParent.descripcion for categoryParent in categoriesList" ng-model="category.parent_id"
                     name="categoryParentId">
-                    <option value="">Selecciona uno</option>
+                    <option value="">{{ loadingCategories }}</option>
                 </select>
             </div>
         </div>
