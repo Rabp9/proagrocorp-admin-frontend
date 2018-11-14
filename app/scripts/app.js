@@ -91,6 +91,15 @@ angular
         title: 'Productos'
     };
     
+    var nosotrosState = {
+        name: 'nosotros',
+        url: '/nosotros',
+        templateUrl: 'views/nosotros.html',
+        controller: 'NosotrosCtrl',
+        controllerAs: 'nosotros',
+        title: 'Nosotros'
+    };
+    
     var linksState = {
         name: 'links',
         url: '/links',
@@ -124,6 +133,7 @@ angular
     $stateProvider.state(usersLoginState);
     $stateProvider.state(categoriesState);
     $stateProvider.state(productosState);
+    $stateProvider.state(nosotrosState);
     $stateProvider.state(linksState);
     $stateProvider.state(usersState);
     $stateProvider.state(rolesState);

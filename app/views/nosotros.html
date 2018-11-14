@@ -1,1 +1,26 @@
-<p>This is the nosotros view.</p>
+<ol class="breadcrumb">
+    <li><a href="#">Inicio</a></li>
+    <li>Nosotros</li>
+</ol>
+<div class="alert alert-dismissible" ng-class="{'alert-success': message.code === 200, 'alert-danger': message.code !== 200 }" role="alert" ng-show="message.code !== undefined">
+    <button type="button" class="close" ng-click="message.code = undefined" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+    {{ message.message }} 
+</div>
+<h2>Nosotros</h2>
+<hr>
+<form class="form-inline" ng-submit="saveNosotros(info, 'btnSaveInfo')">
+    <div class="row">
+        <div class="col-sm-12">
+            <textarea id="txtaValor" class="form-control" ng-model="info.valor" ui-tinymce="tinymcePagesOptions"
+                style="height: 250px;" name="infoValor"></textarea>
+        </div>
+    </div>
+    <br>
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="pull-right">
+                <button id="btnSaveInfo" class="btn btn-success" type="submit">Guardar</button>
+            </div>
+        </div>
+    </div>
+</form>
