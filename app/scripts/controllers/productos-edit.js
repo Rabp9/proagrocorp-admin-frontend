@@ -14,7 +14,7 @@ angular.module('proagrocorpAdminFrontendApp')
     $scope.tmpPath = $rootScope.pathLocation + 'img/productos'; 
     $scope.imagenPreview = producto.imagen;
     var tmpPath = $rootScope.pathLocation + 'tmp' + '/';
-    var changed = false;
+    var changedImagen = false;
     
     $scope.init = function() {
         $scope.getCategories().then(function(categories) {
@@ -41,10 +41,10 @@ angular.module('proagrocorpAdminFrontendApp')
         $('#' + boton).text('Guardando...');
         $utilsViewService.disable('#' + boton);
         
-        if (changed) {
+        if (changedImagen) {
             if (imagenPreview !== null) {
                 producto.imagen = imagenPreview;
-                producto.changed = true;
+                producto.changedImagen = true;
             }
         }
         productosService.save(producto, function(data) {
@@ -65,7 +65,7 @@ angular.module('proagrocorpAdminFrontendApp')
             $scope.imagenPreview = data.filename;
             $scope.loading = false;
             $scope.tmpPath = tmpPath;
-            changed = true;
+            changedImagen = true;
         }, function(err) {
             $scope.imagenPreview = null;
             $scope.loading = false;

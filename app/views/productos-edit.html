@@ -37,6 +37,14 @@
             <span ng-show="!loading && loadingPortada === null">No fue posible cargar la Portada</span>
         </div>
         <div class="form-group">
+            <label for="flFichaTecnica">Ficha Técnica</label>
+            <input id="flFichaTecnica" type="file" class="form-control" ngf-select="previewFichaTecnica($file, $invalidFiles)" 
+                accept="image/*" ngf-max-height="15000" ngf-max-size="10MB" name="productoFichaTecnica" />
+            <span ng-hide="fichaTecnica === undefined || fichaTecnica === null">Ficha Técnica cargada correctamente</span>
+            <span ng-show="loadingFichaTecnica">Cargando...</span>
+            <span ng-show="!loadingFichaTecnica && fichaTecnica === null">No fue posible cargar la Ficha Técnica</span>
+        </div>
+        <div class="form-group">
             <label for="txtaDetalle">Detalle</label>
             <textarea id="txtaDetalle" class="form-control textarea-3x"
                 ng-model="producto.detalle" ui-tinymce="tinymceOptions" name="productoDetalle"></textarea>

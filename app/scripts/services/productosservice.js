@@ -15,6 +15,12 @@ angular.module('proagrocorpAdminFrontendApp')
             url: envService.getHost() + 'productos/previewImagen/.json',
             transformRequest: angular.identity,
             headers: { 'Content-Type': undefined }
+        },
+        previewFichaTecnica: {
+            method: 'POST',
+            url: envService.getHost() + 'productos/previewFichaTecnica/.json',
+            transformRequest: angular.identity,
+            headers: { 'Content-Type': undefined }
         }
     });
 });

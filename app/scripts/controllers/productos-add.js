@@ -18,7 +18,7 @@ angular.module('proagrocorpAdminFrontendApp')
         $uibModalInstance.dismiss('cancel');
     };
     
-    $scope.saveProducto = function(producto, boton, imagenPreview) {
+    $scope.saveProducto = function(producto, boton, imagenPreview, fichaTecnicaPreview) {
         $('#' + boton).text('Guardando...');
         $utilsViewService.disable('#' + boton);
        
@@ -29,7 +29,17 @@ angular.module('proagrocorpAdminFrontendApp')
             return;
         } else {
             producto.imagen = imagenPreview;
-            producto.changed = true;
+            producto.changedImagen = true;
+        }
+        
+        if (fichaTecnicaPreview === undefined) {
+            alert('Debes seleccionar una ficha técnica.');
+            $utilsViewService.enable('#' + boton);
+            $('#' + boton).text('Guardar');
+            return;
+        } else {
+            producto.fichaTecnica = fichaTecnicaPreview;
+            producto.changedFichaTecnica = true;
         }
         
         producto.estado_id = 1;
@@ -61,6 +71,20 @@ angular.module('proagrocorpAdminFrontendApp')
         }, function(data) {
             $scope.imagenPreview = null;
             $scope.loading = false;
+        });
+    };
+    
+    $scope.previewFichaTecnica = function(fichaTecnica, errFiles) {
+        $scope.loadingFichaTecnica = true;
+        var fd = new FormData();
+        fd.append('file', fichaTecnica);
+        
+        productosService.previewFichaTecnica(fd, function(data) {
+            $scope.fichaTecnicaPreview = data.filename;
+            $scope.loadingFichaTecnica = false;
+        }, function(data) {
+            $scope.fichaTecnicaPreview = null;
+            $scope.loadingFichaTecnica = false;
         });
     };
     
