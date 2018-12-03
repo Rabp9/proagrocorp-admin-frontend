@@ -11,10 +11,13 @@ angular.module('proagrocorpAdminFrontendApp')
 .controller('ProductosEditCtrl', function ($scope, producto, $uibModalInstance, productosService,
     $rootScope, $utilsViewService, categoriesService, $q) {
         
-    $scope.tmpPath = $rootScope.pathLocation + 'img/productos'; 
+    $scope.tmpPathImagen = $rootScope.pathLocation + 'img/productos';
+    $scope.tmpPathFichaTecnica = $rootScope.pathLocation + 'files/fichas';
     $scope.imagenPreview = producto.imagen;
+    $scope.fichaTecnicaPreview = producto.fichaTecnica;
     var tmpPath = $rootScope.pathLocation + 'tmp' + '/';
     var changedImagen = false;
+    var changedFichaTecnica = false;
     
     $scope.init = function() {
         $scope.getCategories().then(function(categories) {
@@ -28,6 +31,7 @@ angular.module('proagrocorpAdminFrontendApp')
         productosService.get({id: producto.id}, function(data) {
             $scope.producto = data.producto;
             $scope.imagenPreview = $scope.producto.imagen;
+            $scope.fichaTecnica = $scope.producto.fichaTecnica;
             $scope.producto.imagen = null;
             $scope.loading = false;
         });
@@ -37,7 +41,7 @@ angular.module('proagrocorpAdminFrontendApp')
         $uibModalInstance.dismiss('cancel');
     };
 
-    $scope.saveProducto = function(producto, boton, imagenPreview) {
+    $scope.saveProducto = function(producto, boton, imagenPreview, fichaTecnicaPreview) {
         $('#' + boton).text('Guardando...');
         $utilsViewService.disable('#' + boton);
         
@@ -45,6 +49,12 @@ angular.module('proagrocorpAdminFrontendApp')
             if (imagenPreview !== null) {
                 producto.imagen = imagenPreview;
                 producto.changedImagen = true;
+            }
+        }
+        if (changedFichaTecnica) {
+            if (fichaTecnicaPreview !== null) {
+                producto.fichaTecnica = fichaTecnicaPreview;
+                producto.changedFichaTecnica = true;
             }
         }
         productosService.save(producto, function(data) {
@@ -64,11 +74,27 @@ angular.module('proagrocorpAdminFrontendApp')
         productosService.previewImagen(fd, function(data) {
             $scope.imagenPreview = data.filename;
             $scope.loading = false;
-            $scope.tmpPath = tmpPath;
+            $scope.tmpPathImagen = tmpPath;
             changedImagen = true;
         }, function(err) {
             $scope.imagenPreview = null;
             $scope.loading = false;
+        });
+    };
+    
+    $scope.previewFichaTecnica = function(fichaTecnica, errFiles) {
+        $scope.loading = true;
+        var fd = new FormData();
+        fd.append('file', fichaTecnica);
+        
+        productosService.previewFichaTecnica(fd, function(data) {
+            $scope.fichaTecnicaPreview = data.filename;
+            $scope.loadingFichaTecnica = false;
+            $scope.tmpPathFichaTecnica = tmpPath;
+            changedFichaTecnica = true;
+        }, function(err) {
+            $scope.fichaTecnicaPreview = null;
+            $scope.loadingFichaTecnica = false;
         });
     };
     
