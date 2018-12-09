@@ -63,16 +63,7 @@ angular
         controllerAs: 'users-login',
         title: 'Login'
     };
-    
-    var infosState = {
-        name: 'infos',
-        url: '/infos',
-        templateUrl: 'views/infos.html',
-        controller: 'InfosCtrl',
-        controllerAs: 'infos',
-        title: 'Información General'
-    };
-    
+        
     var categoriesState = {
         name: 'categories',
         url: '/categories',

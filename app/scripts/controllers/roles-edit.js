@@ -21,7 +21,7 @@ angular.module('proagrocorpAdminFrontendApp')
             $scope.rol = data.rol;
             $scope.loading = false;
         });
-    }
+    };
     
     $scope.cancel = function() {
         $uibModalInstance.dismiss('cancel');

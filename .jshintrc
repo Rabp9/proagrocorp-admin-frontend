@@ -9,8 +9,14 @@
   "node": true,
   "strict": true,
   "undef": true,
-  "unused": true,
+  "unused": false,
   "globals": {
-    "angular": false
+    "angular": false,
+    "$": true,
+    "google": true,
+    "confirm": true,
+    "tinymce": true,
+    "link": true,
+    "alert": true
   }
 }
