@@ -32,17 +32,17 @@
             <input id="flImagen" type="file" class="form-control" ngf-select="previewImagen($file, $invalidFiles)" 
                 accept="image/*" ngf-max-height="15000" ngf-max-size="10MB" name="productoImagen" />
             <img ng-hide="imagenPreview === undefined || imagenPreview === null" class="img-responsive" ng-src="{{tmpPathImagen + '/' + imagenPreview}}" alt="imagen previa" >
-            <span ng-hide="imagenPreview === undefined || imagenPreview === null">Imagen cargada correctamente</span>
+            <span ng-hide="imagenPreview === undefined || imagenPreview === null || loadingPortada">Imagen cargada correctamente</span>
             <span ng-show="loadingPortada">Cargando...</span>
-            <span ng-show="!loading && loadingPortada === null">No fue posible cargar la Portada</span>
+            <span ng-show="!loadingPortada && fichaTecnicaPreview === null">No fue posible cargar la Portada</span>
         </div>
         <div class="form-group">
             <label for="flFichaTecnica">Ficha Técnica</label>
             <input id="flFichaTecnica" type="file" class="form-control" ngf-select="previewFichaTecnica($file, $invalidFiles)" 
-                accept="application/pdf" ngf-max-height="15000" ngf-max-size="10MB" name="productoFichaTecnica" />
+                accept="application/pdf" ngf-max-height="150000" ngf-max-size="15MB" name="productoFichaTecnica" />
             <a class="btn btn-default" target="_blank" ng-href="{{ tmpPathFichaTecnica + '/' + fichaTecnicaPreview }}"><span class="glyphicon glyphicon-download-alt"></span> Ficha Técnica</a>
             <br>
-            <span ng-hide="fichaTecnicaPreview === undefined || fichaTecnicaPreview === null">Ficha Técnica cargada correctamente</span>
+            <span ng-hide="fichaTecnicaPreview === undefined || fichaTecnicaPreview === null || loadingFichaTecnica">Ficha Técnica cargada correctamente</span>
             <span ng-show="loadingFichaTecnica">Cargando...</span>
             <span ng-show="!loadingFichaTecnica && fichaTecnicaPreview === null">No fue posible cargar la Ficha Técnica</span>
         </div>

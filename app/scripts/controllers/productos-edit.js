@@ -67,23 +67,23 @@ angular.module('proagrocorpAdminFrontendApp')
     };
     
     $scope.previewImagen = function(imagen, errFiles) {
-        $scope.loading = true;
+        $scope.loadingPortada = true;
         var fd = new FormData();
         fd.append('file', imagen);
         
         productosService.previewImagen(fd, function(data) {
             $scope.imagenPreview = data.filename;
-            $scope.loading = false;
+            $scope.loadingPortada = false;
             $scope.tmpPathImagen = tmpPath;
             changedImagen = true;
         }, function(err) {
             $scope.imagenPreview = null;
-            $scope.loading = false;
+            $scope.loadingPortada = false;
         });
     };
     
     $scope.previewFichaTecnica = function(fichaTecnica, errFiles) {
-        $scope.loading = true;
+        $scope.loadingFichaTecnica = true;
         var fd = new FormData();
         fd.append('file', fichaTecnica);
         

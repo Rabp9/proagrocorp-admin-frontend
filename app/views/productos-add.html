@@ -39,7 +39,7 @@
         <div class="form-group">
             <label for="flFichaTecnica">Ficha Técnica</label>
             <input id="flFichaTecnica" type="file" class="form-control" ngf-select="previewFichaTecnica($file, $invalidFiles)" 
-                accept="application/pdf" ngf-max-height="15000" ngf-max-size="10MB" name="productoFichaTecnica" />
+                accept="application/pdf" ngf-max-height="150000" ngf-max-size="15MB" name="productoFichaTecnica" />
             <span ng-hide="fichaTecnicaPreview === undefined || fichaTecnicaPreview === null">Ficha Técnica cargada correctamente</span>
             <span ng-show="loadingFichaTecnica">Cargando...</span>
             <span ng-show="!loadingFichaTecnica && fichaTecnicaPreview === null">No fue posible cargar la Ficha Técnica</span>
