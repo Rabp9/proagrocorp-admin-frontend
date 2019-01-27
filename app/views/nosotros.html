@@ -13,6 +13,8 @@
         <div class="col-sm-12">
             <textarea id="txtaValor" class="form-control" ng-model="info.valor" ui-tinymce="tinymcePagesOptions"
                 style="height: 250px;" name="infoValor"></textarea>
+            <input style="display: none;" id="flImagen" type="file" class="form-control" ngf-select="upload($file, $invalidFiles)" 
+                accept="image/*" ngf-max-height="5000" ngf-max-size="10MB" name="imagen"/>
         </div>
     </div>
     <br>

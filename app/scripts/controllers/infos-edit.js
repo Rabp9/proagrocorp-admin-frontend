@@ -12,7 +12,7 @@ angular.module('proagrocorpAdminFrontendApp')
     $utilsViewService, $rootScope) {
     $scope.info = $.extend(true, {}, info);
 
-    $scope.tmpPath = $rootScope.pathLocation + 'img/infos'; 
+    $scope.tmpPath = $rootScope.pathLocation + 'img/infos/'; 
     $scope.imagenPreview = $scope.info.valor;
     var tmpPath = $rootScope.pathLocation + 'tmp' + '/';
     var changed = false;

@@ -23,6 +23,12 @@ angular.module('proagrocorpAdminFrontendApp')
             url: envService.getHost() + 'infos/previewImagen.json',
             transformRequest: angular.identity,
             headers: { 'Content-Type': undefined }
+        },
+        upload: {
+            method: 'POST',
+            url: envService.getHost() + 'infos/upload/.json',
+            transformRequest: angular.identity,
+            headers: { 'Content-Type': undefined }
         }
     });
 });

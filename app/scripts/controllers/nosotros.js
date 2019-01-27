@@ -10,7 +10,7 @@
 angular.module('proagrocorpAdminFrontendApp')
 .controller('NosotrosCtrl', function ($scope, infosService, $utilsViewService, $rootScope) {
     
-    $scope.tmpPath = $rootScope.pathLocation + 'img/infos'; 
+    $scope.tmpPath = $rootScope.pathLocation + 'img/infos/'; 
     var search = ['nosotros_body'];
     var tmpPath = $rootScope.pathLocation + 'tmp' + '/';
     var changed = false;
