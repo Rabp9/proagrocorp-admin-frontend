@@ -24,6 +24,12 @@ angular.module('proagrocorpAdminFrontendApp')
             transformRequest: angular.identity,
             headers: { 'Content-Type': undefined }
         },
+        previewVideo: {
+            method: 'POST',
+            url: envService.getHost() + 'infos/previewVideo.json',
+            transformRequest: angular.identity,
+            headers: { 'Content-Type': undefined }
+        },
         upload: {
             method: 'POST',
             url: envService.getHost() + 'infos/upload/.json',

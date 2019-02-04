@@ -19,7 +19,7 @@
             <div ng-if="info.tipo === 'image'">
                 <input id="flValor" type="file" class="form-control" ngf-select="previewImagen($file, $invalidFiles)" 
                     accept="image/*" ngf-max-height="15000" ngf-max-size="10MB" name="infoTipo"/>
-                <img ng-hide="imagenPreview === undefined || imagenPreview === null" class="img-responsive" ng-src="{{tmpPath + '/' + imagenPreview}}" alt="imagen previa" >
+                <img ng-hide="imagenPreview === undefined || imagenPreview === null" class="img-responsive" ng-src="{{tmpPathImg + '/' + imagenPreview}}" alt="imagen previa" >
                 <span ng-hide="loadingImagen === true || imagenPreview === undefined || imagenPreview === null">Imagen cargada correctamente</span>
                 <span ng-show="loadingImagen">Cargando...</span>
                 <span ng-show="loadingImagen === null">No fue posible cargar la Imagen</span>
@@ -27,6 +27,19 @@
             
             <input ng-if="info.tipo === 'textarea'" style="display: none;" ng-if="info.tipo === 'image'"  id="flImagen" type="file" class="form-control" ngf-select="upload($file, $invalidFiles)" 
                 accept="image/*" ngf-max-height="5000" ngf-max-size="10MB" name="imagen"/>
+            
+            <div ng-if="info.tipo === 'vfile'">         
+                {{ videoPreview | json }}
+                <input id="flValor" type="file" class="form-control" ngf-select="previewVideo($file, $invalidFiles)" 
+                    ngf-max-size="100MB" name="infoTipo"/>
+                <video ng-src="{{ tmpPathMp4 + videoPreview | trustUrl }}" ng-hide="videoPreview === undefined || videoPreview === null" width="400" controls>
+                </video>
+                <br>
+                <span ng-hide="loadingVideo === true || videoPreview === undefined || videoPreview === null">Video cargado correctamente</span>
+                <span ng-show="loadingVideo">Cargando...</span>
+                <span ng-show="loadingVideo === null">No fue posible cargar el Video</span>
+            </div>
+            
         </div>
     </div>
     <div class="modal-footer">
