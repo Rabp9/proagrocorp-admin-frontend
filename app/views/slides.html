@@ -28,7 +28,7 @@
     <h3 ng-hide="!loading">Cargando...</h3>
     <div ui-sortable="sortableOptions" ng-model="slides">
         <div ng-hide="loading" class="col-sm-2" ng-repeat="slide in slides" ng-class="{'inactive-slide': slide.estado_id === 2}"
-            style="cursor: move;">
+            style="cursor: move; margin-bottom: 5px;">
             <div class="slide">
                 <img class="img-responsive" ng-src="{{ pathLocation}}/img/slides/{{ slide.imagen }}"/>
                 <div class="edit animated fadeIn animation-slow">
