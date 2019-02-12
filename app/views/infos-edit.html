@@ -28,8 +28,7 @@
             <input ng-if="info.tipo === 'textarea'" style="display: none;" ng-if="info.tipo === 'image'"  id="flImagen" type="file" class="form-control" ngf-select="upload($file, $invalidFiles)" 
                 accept="image/*" ngf-max-height="5000" ngf-max-size="10MB" name="imagen"/>
             
-            <div ng-if="info.tipo === 'vfile'">         
-                {{ videoPreview | json }}
+            <div ng-if="info.tipo === 'vfile'">
                 <input id="flValor" type="file" class="form-control" ngf-select="previewVideo($file, $invalidFiles)" 
                     ngf-max-size="100MB" name="infoTipo"/>
                 <video ng-src="{{ tmpPathMp4 + videoPreview | trustUrl }}" ng-hide="videoPreview === undefined || videoPreview === null" width="400" controls>
